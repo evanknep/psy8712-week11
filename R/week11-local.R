@@ -127,3 +127,4 @@ table1_tbl <- tibble(
   )
 )
 table1_tbl
+dotplot(resamples(list(model1, model2, model3, model4)), metric = "Rsquared")
