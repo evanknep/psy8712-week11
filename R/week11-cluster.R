@@ -110,7 +110,7 @@ holdout_m4 <- cor(
 
 
 
-local_cluster <- makeCluster(7)
+local_cluster <- makeCluster(30)
 registerDoParallel(local_cluster)
 m1_parallel_time <- system.time(model1 <- train(
   MOSTHRS ~ .,
@@ -221,7 +221,7 @@ dotplot(resamples(list(model1, model2, model3, model4)), metric = "Rsquared")
 table4 <- tibble(
   algo = c("regression", "elastic net", "random forests", "xgboost"),
   supercomputer = c(m1_time[3], m2_time[3], m3_time[3], m4_time[3]),
-  supercomputer_35 = c(m1_parallel_time[3], m2_parallel_time[3], m3_parallel_time[3], m4_parallel_time[3])
+  supercomputer_30 = c(m1_parallel_time[3], m2_parallel_time[3], m3_parallel_time[3], m4_parallel_time[3])
 )
 table4
 
