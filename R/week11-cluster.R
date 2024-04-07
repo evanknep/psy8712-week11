@@ -1,6 +1,6 @@
 #Script Settings and Resources
 # setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
-library(tidyr)
+library(tidyverse)
 library(caret)
 library(haven)
 library(parallel)
