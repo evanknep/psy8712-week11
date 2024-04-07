@@ -110,7 +110,7 @@ holdout_m4 <- cor(
 
 
 
-local_cluster <- makeCluster(7)
+local_cluster <- makeCluster(35)
 registerDoParallel(local_cluster)
 m1_parallel_time <- system.time(model1 <- train(
   MOSTHRS ~ .,
@@ -201,7 +201,7 @@ make_it_pretty <- function (formatme) {
   return(formatme)
 }
 
-table1_tbl <- tibble(
+table3 <- tibble(
   algo <- c("regression", "elastic net", "random forests", "xgboost"),
   cv_rqs = c(make_it_pretty(cv_m1), 
              make_it_pretty(cv_m2), 
@@ -214,17 +214,18 @@ table1_tbl <- tibble(
     make_it_pretty(holdout_m4)
   )
 )
-table1_tbl
+table3
 dotplot(resamples(list(model1, model2, model3, model4)), metric = "Rsquared")
 
 
-table2_tbl <- tibble(
+table4 <- tibble(
   algo = c("regression", "elastic net", "random forests", "xgboost"),
-  original = c(m1_time[3], m2_time[3], m3_time[3], m4_time[3]),
-  parallel = c(m1_parallel_time[3], m2_parallel_time[3], m3_parallel_time[3], m4_parallel_time[3])
+  supercomputer = c(m1_time[3], m2_time[3], m3_time[3], m4_time[3]),
+  supercomputer_35 = c(m1_parallel_time[3], m2_parallel_time[3], m3_parallel_time[3], m4_parallel_time[3])
 )
+table4
 
-
-
+write.table(table3, "../out/table3.csv", sep = ",")
+write.table(table4, "../out/table4.csv", sep = ",")
 
 
