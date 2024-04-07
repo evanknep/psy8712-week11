@@ -1,6 +1,6 @@
 #Script Settings and Resources
-setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
-library(tidyverse)
+# setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
+library(tidyr)
 library(caret)
 library(haven)
 library(parallel)
@@ -110,7 +110,7 @@ holdout_m4 <- cor(
 
 
 
-local_cluster <- makeCluster(35)
+local_cluster <- makeCluster(7)
 registerDoParallel(local_cluster)
 m1_parallel_time <- system.time(model1 <- train(
   MOSTHRS ~ .,
