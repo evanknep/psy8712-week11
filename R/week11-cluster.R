@@ -18,7 +18,7 @@ gss_tbl <- gss_import_tbl[, colSums(is.na(gss_import_tbl)) < .75 * nrow(gss_impo
 # Visualization
 ggplot(gss_tbl, aes(x=MOSTHRS)) +
   geom_histogram()
-  
+
 
 # Analysis
 
@@ -49,7 +49,6 @@ holdout_m1 <- cor(
   predict(model1, test_tbl, na.action = na.pass),
   test_tbl$MOSTHRS
 ) ^ 2
-
 
 
 
@@ -224,16 +223,8 @@ table2_tbl <- tibble(
   original = c(m1_time[3], m2_time[3], m3_time[3], m4_time[3]),
   parallel = c(m1_parallel_time[3], m2_parallel_time[3], m3_parallel_time[3], m4_parallel_time[3])
 )
-table2_tbl
 
-# Q1-2 We see some fairly stark model differences when parallelizing. Linear regression actually slows down slightly,
-# by elastic net and random forest cuts its time more than in half, and xgboost gets a massive speedboost from 107s to 23.9 seconds.
-# The general answer is that some operations are parallelizable and some are not. If our analysis requires sequential processing, and can't 
-# be split to run independently across different cores, we're out of luck. This is likely the case with our lm model. There's also differences in model complexity,
-# the more operations that need to be run, the more time there is to be gained. This is why we see much more drastic drops in time in our random forest and xgboost 
-# than in our glm. 
 
-# Q3 In this dataset I would take random forest. It takes longer to run than our glm, but quite efficient at only 12.4 sec runtime, 
-# and our out of sample R^2 was significantly higher.  
+
 
 
