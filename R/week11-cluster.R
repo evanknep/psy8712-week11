@@ -15,11 +15,6 @@ gss_tbl <- gss_import_tbl[, colSums(is.na(gss_import_tbl)) < .75 * nrow(gss_impo
   mutate(across(everything(), as.numeric))
 
 
-# Visualization
-ggplot(gss_tbl, aes(x=MOSTHRS)) +
-  geom_histogram()
-
-
 # Analysis
 
 
@@ -189,8 +184,7 @@ holdout_m4 <- cor(
   test_tbl$MOSTHRS
 ) ^ 2
 holdout_m4
-stopCluster(local_cluster)
-registerDoSEQ()
+
 
 
 
@@ -229,3 +223,5 @@ write.table(table3, "../out/table3.csv", sep = ",")
 write.table(table4, "../out/table4.csv", sep = ",")
 
 
+stopCluster(local_cluster)
+registerDoSEQ()
