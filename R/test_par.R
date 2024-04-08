@@ -29,7 +29,7 @@ training_tbl <- gss_tbl[holdout_indices,]
 test_tbl <- gss_tbl[-holdout_indices,]
 
 training_folds <- createFolds(training_tbl$MOSTHRS)
-local_cluster <- makeCluster(detectCores() - 1)
+local_cluster <- makeCluster(2)
 registerDoParallel(local_cluster)
 
 m1_time <- system.time(model1 <- train(
