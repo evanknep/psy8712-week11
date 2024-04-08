@@ -183,9 +183,10 @@ holdout_m4 <- cor(
   predict(model4, test_tbl, na.action = na.pass),
   test_tbl$MOSTHRS
 ) ^ 2
-holdout_m4
 
 
+stopCluster(local_cluster)
+registerDoSEQ()
 
 
 # Publication
@@ -219,9 +220,7 @@ table4 <- tibble(
 )
 table4
 
-write.table(table3, "../out/table3.csv", sep = ",")
-write.table(table4, "../out/table4.csv", sep = ",")
+write.table(table3, "table3.csv", sep = ",")
+write.table(table4, "table4.csv", sep = ",")
 
 
-stopCluster(local_cluster)
-registerDoSEQ()
