@@ -105,7 +105,7 @@ holdout_m4 <- cor(
 
 
 
-local_cluster <- makeCluster(30)
+local_cluster <- makeCluster(8)
 registerDoParallel(local_cluster)
 m1_parallel_time <- system.time(model1 <- train(
   MOSTHRS ~ .,
