@@ -224,3 +224,22 @@ write.table(table3, "table3.csv", sep = ",")
 write.table(table4, "table4.csv", sep = ",")
 
 
+## Questions
+## 1. Interestingly, and though this seems like it may be due to an error on my part, all of my models took longer to run
+## when parallelizing. Perhaps this is do to the amount of resources I requested, or that for some reason I could not get access
+## to mangi and so had to use mesabi. The code I am using is identical to what was run locally, in which parallelizing was faster,
+## so it seems like an odd outcome. My best guess is that the initial system processing that goes into setting up our local cluster
+## takes longer on msi, at least the way I set it up, so if the job we are having it complete is comparatively short any gains are washed out. 
+## So maybe MSI is designed to optimize massive workloads on large datasets at the expense of gains on smaller ones?
+
+## 2. Initially I ran into a lot of issues when testing core numbers in the compute node. I tried using higher numbers >15 cores
+## and it resulted in memory failure and the killing of my qeued R script. So I moved it back down to 8 cores, which worked on my local machine,
+## and that seemed to work fine. My guess is that in most cases more cores = faster processing (assuming the code is sufficiently parallizable),
+## but again for whatever reason in this instance it was not. It also seems likely this relationship wouldn't be linear,
+## and would be one with diminishing returns, because the more cores used the less work being dedicated to each, so less time available to gain per core.
+
+## 3. I would pick random forest. While it takes significantly longer to run than lm and glm (122 > 12 seconds), the holdout R^2 value is significantly higher (.61 > .36), so that 
+## extra time feels worthwile. If I was tight on time I would choose the glm, as it significantly outperforms the lm, and performs
+## comparably to our xgboost in far less time.
+
+
