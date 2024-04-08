@@ -1,0 +1,5 @@
+"algo","supercomputer","supercomputer_30"
+"1","regression",4.876,29.757
+"2","elastic net",9.465,10.375
+"3","random forests",101.928,122.369
+"4","xgboost",149.621,163.054
